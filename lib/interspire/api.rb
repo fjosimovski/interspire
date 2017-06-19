@@ -109,7 +109,7 @@ module Interspire
         <xmlrequest>
           <username>#{@user}</username>
           <usertoken>#{@token}</usertoken>
-          <requesttype>user</requesttype>
+          <requesttype>lists</requesttype>
           <requestmethod>GetLists</requestmethod>
           <details>
           </details>
