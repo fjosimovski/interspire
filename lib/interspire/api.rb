@@ -243,10 +243,17 @@ module Interspire
     # @return [Nokogiri::Document] A +Nokogiri::Document+ build from the API response.
     def get_response(xml)
       url = URI.parse(@api_url)
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+
+
       request = Net::HTTP::Post.new(url.path)
+
       request.body = xml
 
-      response = Net::HTTP.new(url.host, url.port).start { |http| http.request(request) }
+      response = http.request(request)
+      puts response.read_body
+      # response = Net::HTTP.new(url.host, url.port).start { |http| http.request(request) }
 
       Nokogiri::XML.parse(response.body)
     end
